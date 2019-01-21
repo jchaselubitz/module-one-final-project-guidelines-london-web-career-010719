@@ -1,16 +1,16 @@
-require 'rest-client'
-require 'json'
-require 'pry'
+# require 'rest-client'
+# require 'json'
+# require 'pry'
 
-# search for the charcter name using API, return JSON info for that character
-def get_character_data(character_name)
-  response_string = RestClient.get("http://www.swapi.co/api/people/?search=#{character_name}")
+# search for the drink name using API, return JSON info for that drink
+def get_drink_data(drink_name)
+  response_string = RestClient.get("https://www.thecocktaildb.com/api/json/v1/1/search.php?s=#{drink_name}")
   JSON.parse(response_string.body)
 end
 
 # return the url of films from the JSON information
-def get_character_movies_from_api(character_hash)
-  return character_hash["results"][0]["films"]
+def get_ingredients_from_api(drink_hash)
+  return drink_hash["results"][0]["ingredients"]
 end
 
 

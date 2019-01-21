@@ -7,7 +7,7 @@ def get_user_name
   gets.strip.downcase
 end
 
-def get_user_drink
+def get_user_drink(user)
   puts "what drink would you like?"
   gets.strip.downcase
 end
