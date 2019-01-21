@@ -27,7 +27,7 @@ namespace :db do
 
   desc "start console"
   task :console do
-    ActiveRecord::Base.logger = Logger.new(STDOUT)
+    ActiveRecord::Base.logger = Logger.new(STDOUT) #Transplanted 
     Pry.start
   end
 end
