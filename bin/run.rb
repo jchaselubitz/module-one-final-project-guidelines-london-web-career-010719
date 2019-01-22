@@ -8,10 +8,11 @@ require_relative "../apps/modules/cocktail.rb"
 require_relative "../apps/modules/ingredient.rb"
 
 
+@@session_user={}
 
 def run
-# user = get_user_name
-user = get_user_name
+
+get_user_name
 main_menu
 user_drink = get_user_drink
 
