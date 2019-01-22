@@ -7,7 +7,7 @@
 def get_user_name
   puts "Welcome to the best Bar in the World!"
   puts "please enter your name"
-  @@session_user = User.create(name: gets.strip)
+  @@session_user = User.create(name: gets.strip.capitalize)
   # binding.pry
   puts "Hello #{@@session_user.name}, how can I help you?"
 end
@@ -34,10 +34,11 @@ end
 #---------------------Drinks Selection--------------------
 
 def get_user_drink
-  puts "what drink would you like?"
+  puts "what drink would you like? (search)"
   user_drink = gets.strip.downcase
   drink_hash = get_drink_hash_by_name(user_drink)
   drink_name = get_drink_name_from_api(drink_hash)
+  puts ""
   puts "#{drink_name} is an excellent choice! do you want to know anything about this?"
   drinks_options(drink_name, drink_hash)
 end
@@ -67,30 +68,33 @@ user_selection = gets.strip.to_i
     puts catagory
     drinks_options(drink_name, drink_hash)
   when 4
-    create_cocktail_details(drink_name, drink_hash)
+    create_cocktail(drink_name, drink_hash)
+    puts "Wonderful, here is your #{drink_name}: #put picture here"
+    main_menu
   when 5
     get_user_drink
   end
 end
 
-def create_cocktail_details(drink_name, drink_hash)
-idDrink = get_drink_ID_from_api(drink_hash)
-catagory = get_drink_catagory_from_api(drink_hash)
-ingredients = get_drink_ingredients_from_api(drink_hash)
-instructions = get_drink_instructions_from_api(drink_hash)
-create_cocktail(drink_name, idDrink, catagory, instructions, ingredients)
-end
 
-
-def create_cocktail(drink_name, idDrink, catagory, instructions, ingredients)
-  user_drink = Cocktail.create(name: drink_name, user_id: @@session_user.id, idDrink: idDrink, strIBA: catagory, strInstructions: instructions)
-  create_ingredients(user_drink.id, ingredients)
+def create_cocktail(drink_name, drink_hash)
+  user_drink = Cocktail.create(
+    name: drink_name, 
+    user_id: @@session_user.id, 
+    idDrink: get_drink_ID_from_api(drink_hash), 
+    strIBA: get_drink_catagory_from_api(drink_hash), 
+    strInstructions: get_drink_instructions_from_api(drink_hash)
+  )
+  create_ingredients(
+    user_drink.id, 
+    get_drink_ingredients_from_api(drink_hash)
+    )
 end
 
 def create_ingredients(id, ingredients)
-ingredients.each do |ingredient|
-  Ingredient.create(name: ingredient, drink_id: id)
-end
+  ingredients.each do |ingredient|
+    Ingredient.create(name: ingredient, drink_id: id)
+  end
 end
 
 
@@ -116,13 +120,11 @@ def ask_bartender
       ask_bartender
     when 4
       main_menu
-    # binding.pry
   end
 end
 
 
 #---------------------leave bar--------------------
-
 
 def leave_bar
 puts "See ya!"
