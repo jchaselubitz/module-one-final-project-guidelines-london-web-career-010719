@@ -15,9 +15,11 @@ end
 #---------------------Main Menu--------------------
 
 def main_menu
+puts ""
 puts "1| Search for Drink"
 puts "2| Ask Bartender"
 puts "3| Leave Bar"
+puts "-----------------------------"
 user_selection = gets.strip.to_i
   case user_selection
   when 1
@@ -27,7 +29,6 @@ user_selection = gets.strip.to_i
   when 3
     leave_bar
   end
-  # binding.pry
 end
 
 #---------------------Drinks Selection--------------------
@@ -44,11 +45,13 @@ end
 #---------------------Drinks Options--------------------
 
 def drinks_options(drink_name, drink_hash)
+puts ""
 puts "1| See ingredients"
 puts "2| See how its made"
 puts "3| See drink catagory"
 puts "4| Select this drink"
 puts "5| Choose a different drink"
+puts "-----------------------------"
 user_selection = gets.strip.to_i
   case user_selection
   when 1
@@ -85,18 +88,36 @@ def create_cocktail(drink_name, idDrink, catagory, instructions, ingredients)
 end
 
 def create_ingredients(id, ingredients)
-  puts "hi!"
 ingredients.each do |ingredient|
   Ingredient.create(name: ingredient, drink_id: id)
 end
-binding.pry
 end
 
 
 #---------------------Ask Bartender--------------------
 
 def ask_bartender
-puts "go away!"
+  puts ""
+  puts "1| What was my last drink?"
+  puts "2| What's the most popular drink?"
+  puts "3| What's the least popular drink?"
+  puts "4| No more questions??"
+  puts "--------------------------"
+  user_selection = gets.strip.to_i
+    case user_selection
+    when 1
+      @@session_user.last_drink
+      ask_bartender
+    when 2
+      puts Cocktail.most_popular
+      ask_bartender
+    when 3
+      puts Cocktail.least_popular
+      ask_bartender
+    when 4
+      main_menu
+    # binding.pry
+  end
 end
 
 
