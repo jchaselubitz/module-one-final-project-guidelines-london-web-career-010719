@@ -3,11 +3,15 @@ require 'pry'
 require_relative "../lib/command_line_interface.rb"
 require_relative "../lib/api_communicator.rb"
 require_relative '../config/environment'
+require_relative "../apps/modules/user.rb"
+require_relative "../apps/modules/cocktail.rb"
+require_relative "../apps/modules/ingredient.rb"
+
 
 
 def run
-welcome
-user = get_user_name
+# user = get_user_name
+user = create_user_instance
 user_drink = get_user_drink(user)
 drink_hash = get_drink_hash_by_name(user_drink)
 drink_name = get_drink_name_from_api(drink_hash)
