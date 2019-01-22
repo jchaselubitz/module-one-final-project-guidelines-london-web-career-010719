@@ -28,6 +28,23 @@ def get_drink_ID_from_api(drink_hash)
   return drink_hash["drinks"][0]["strInstructions"]
 end
 
+# return the list of ingredients of the drink from the JSON information
+def get_drink_ingredients_from_api(drink_hash)
+  i = 1
+  string = nil
+  ingredients_array =[]
+  until string == ""
+    string = drink_hash["drinks"][0]["strIngredient#{i}"]
+    if string == ""
+      break
+    else
+    ingredients_array << drink_hash["drinks"][0]["strIngredient#{i}"]
+    i += 1
+  end
+end
+  ingredients_array
+end
+
 
 #go through each link, push the resulting JSON parse into an array
 def get_film_info_for_film(film_links)
