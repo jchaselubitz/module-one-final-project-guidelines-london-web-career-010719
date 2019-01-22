@@ -3,14 +3,29 @@
 # require 'pry'
 
 # search for the drink name using API, return JSON info for that drink
-def get_drink_data(drink_name)
-  response_string = RestClient.get("https://www.thecocktaildb.com/api/json/v1/1/search.php?s=#{drink_name}")
+def get_drink_hash_by_name(user_drink)
+  response_string = RestClient.get("https://www.thecocktaildb.com/api/json/v1/1/search.php?s=#{user_drink}")
   JSON.parse(response_string.body)
 end
 
-# return the url of films from the JSON information
-def get_ingredients_from_api(drink_hash)
-  return drink_hash["results"][0]["ingredients"]
+# return the name of the drink from the JSON information
+def get_drink_name_from_api(drink_hash)
+  return drink_hash["drinks"][0]["strDrink"]
+end
+
+# return the ID of the drink from the JSON information
+def get_drink_ID_from_api(drink_hash)
+  return drink_hash["drinks"][0]["idDrink"]
+end
+
+# return the catagory of the drink from the JSON information
+def get_drink_catagory_from_api(drink_hash)
+  return drink_hash["drinks"][0]["strIBA"]
+end
+
+# return the instructions of the drink from the JSON information
+def get_drink_ID_from_api(drink_hash)
+  return drink_hash["drinks"][0]["strInstructions"]
 end
 
 

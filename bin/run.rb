@@ -8,10 +8,12 @@ require_relative '../config/environment'
 def run
 welcome
 user = get_user_name
-drink_name = get_user_drink(user)
-drink_data = get_drink_data(drink_name)
+user_drink = get_user_drink(user)
+drink_hash = get_drink_hash_by_name(user_drink)
+drink_name = get_drink_name_from_api(drink_hash)
 
-drink_data
+
+drink_name
 binding.pry
 # movies_list = get_character_movies_from_api(character_info)
 # movies_info_hash = get_film_info_for_film(movies_list)
