@@ -101,7 +101,6 @@ end
 #---------------------leave bar--------------------
 
 
-
 def leave_bar
 puts "See ya!"
 end
