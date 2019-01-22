@@ -8,10 +8,14 @@ class IntialDbCreation < ActiveRecord::Migration[5.0]
       t.string :name
       t.integer :drink_id
     end
-  
+
     create_table :cocktails do |t|
       t.string :name
       t.integer :user_id
+      #t.integer :idDrink
+      #t.string :strIBA
+      #t.string :strInstructions
+      #t.integer :coctail-ingredients_id
     end
   end
 

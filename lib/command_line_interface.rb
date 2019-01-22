@@ -4,7 +4,7 @@ end
 
 def get_user_name
   puts "please enter your name"
-  gets.strip.downcase
+  User.new = gets.strip.downcase
 end
 
 def get_user_drink(user)
