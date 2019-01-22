@@ -11,6 +11,9 @@ user = get_user_name
 user_drink = get_user_drink(user)
 drink_hash = get_drink_hash_by_name(user_drink)
 drink_name = get_drink_name_from_api(drink_hash)
+drink_id = get_drink_ID_from_api(drink_hash)
+drink_catagory = get_drink_catagory_from_api(drink_hash)
+drink_instructions = get_drink_instructions_from_api(drink_hash)
 drink_ingredients = get_drink_ingredients_from_api(drink_hash)
 
 

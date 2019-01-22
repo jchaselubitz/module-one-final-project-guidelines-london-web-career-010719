@@ -24,7 +24,7 @@ def get_drink_catagory_from_api(drink_hash)
 end
 
 # return the instructions of the drink from the JSON information
-def get_drink_ID_from_api(drink_hash)
+def get_drink_instructions_from_api(drink_hash)
   return drink_hash["drinks"][0]["strInstructions"]
 end
 
