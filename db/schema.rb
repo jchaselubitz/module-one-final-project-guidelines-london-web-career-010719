@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_01_22_175650) do
+ActiveRecord::Schema.define(version: 2019_01_23_094346) do
 
   create_table "cocktails", force: :cascade do |t|
     t.string "name"
@@ -27,6 +27,7 @@ ActiveRecord::Schema.define(version: 2019_01_22_175650) do
 
   create_table "users", force: :cascade do |t|
     t.string "name"
+    t.string "full_name"
   end
 
 end

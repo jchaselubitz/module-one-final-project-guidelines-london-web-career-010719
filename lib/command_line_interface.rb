@@ -1,12 +1,6 @@
-
-#---------------------Start new program--------------------
-def get_user_name
-  puts "Welcome to the best Bar in the World!"
-  puts "please enter your name"
-  @@session_user = User.create(name: gets.strip.capitalize)
-  # binding.pry
-  puts "Hello #{@@session_user.name}, how can I help you?"
-end
+# def welcome
+#   puts "Welcome to the best Bar in the World!"
+# end
 
 #---------------------Main Menu--------------------
 
@@ -75,14 +69,14 @@ end
 
 def create_cocktail(drink_name, drink_hash)
   user_drink = Cocktail.create(
-    name: drink_name, 
-    user_id: @@session_user.id, 
-    idDrink: get_drink_ID_from_api(drink_hash), 
-    strIBA: get_drink_catagory_from_api(drink_hash), 
+    name: drink_name,
+    user_id: @@session_user.id,
+    idDrink: get_drink_ID_from_api(drink_hash),
+    strIBA: get_drink_catagory_from_api(drink_hash),
     strInstructions: get_drink_instructions_from_api(drink_hash)
   )
   create_ingredients(
-    user_drink.id, 
+    user_drink.id,
     get_drink_ingredients_from_api(drink_hash)
     )
 end

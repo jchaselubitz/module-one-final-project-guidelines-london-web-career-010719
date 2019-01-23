@@ -2,6 +2,7 @@
 require 'pry'
 require_relative "../lib/command_line_interface.rb"
 require_relative "../lib/api_communicator.rb"
+require_relative "../lib/welcome_routine.rb"
 require_relative '../config/environment'
 require_relative "../apps/modules/user.rb"
 require_relative "../apps/modules/cocktail.rb"
