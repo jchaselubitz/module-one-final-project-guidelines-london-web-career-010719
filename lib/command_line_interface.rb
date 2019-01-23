@@ -35,7 +35,7 @@ def get_user_drink
 	  puts ""
 	  puts "#{drink_name} is an excellent choice! do you want to know anything about this?".print_slowly
 	  drinks_options(drink_name, drink_hash)
-  else 
+  else
     puts ""
 	  puts "Sorry buddy, there is no such drink."
   end
@@ -139,7 +139,8 @@ def ask_bartender
         "Forget about the past, you can't change it. Forget about the future, you can't predict it.Forget about the present, I didn't get you one.",
         "What do you call a grilled cheese sandwich that gets right up in your face? Too close for comfort food."
       ]
-      puts joke_array[rand(0..joke_array.length)].prints_slowly
+    output = joke_array[rand(0..joke_array.length)]
+    output.print_slowly
       ask_bartender
     when 'No more questions??'
       main_menu
