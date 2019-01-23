@@ -5,18 +5,20 @@
 #---------------------Main Menu--------------------
 
 def main_menu
-puts ""
-puts "1| Search for Drink"
-puts "2| Ask Bartender"
-puts "3| Leave Bar"
+  puts ""
+  prompt = TTY::Prompt.new
+  response = prompt.select("") do |menu|
+  menu.choice 'Search for Drink'
+  menu.choice 'Ask Bartender'
+  menu.choice 'Leave Bar'
+end
 puts "-----------------------------"
-user_selection = gets.strip.to_i
-  case user_selection
-  when 1
+  case response
+  when 'Search for Drink'
     get_user_drink
-  when 2
+  when 'Ask Bartender'
     ask_bartender
-  when 3
+  when 'Leave Bar'
     leave_bar
   end
 end
@@ -37,33 +39,33 @@ end
 
 def drinks_options(drink_name, drink_hash)
 puts ""
-puts "1| Select this drink"
-puts "2| See how its made"
-puts "3| See drink catagory"
-puts "4| See ingredients"
-puts "5| Choose a different drink"
+prompt = TTY::Prompt.new
+response = prompt.select("") do |menu|
+menu.choice 'Select this drink'
+menu.choice 'See ingredients'
+menu.choice 'See how its made'
+menu.choice 'See drink catagory'
+menu.choice 'Choose a different drink'
+end
 puts "-----------------------------"
-user_selection = gets.strip.to_i
-  case user_selection
-  when 1
+  case response
+  when 'Select this drink'
     create_cocktail(drink_name, drink_hash)
-    puts "Wonderful, here is your #{drink_name}:"
-    #use image gem 
-    #get_drink_image_from_api(drink_hash)
+    puts "Wonderful, here is your #{drink_name}: #put picture here"
     main_menu
-  when 2
-    instructions = get_drink_instructions_from_api(drink_hash)
-    puts instructions
-    drinks_options(drink_name, drink_hash)
-  when 3
-    catagory = get_drink_catagory_from_api(drink_hash)
-    puts catagory
-    drinks_options(drink_name, drink_hash)
-  when 4
+  when 'See ingredients'
     ingredients = get_drink_ingredients_from_api(drink_hash)
     puts ingredients
     drinks_options(drink_name, drink_hash)
-  when 5
+  when 'See how its made'
+    instructions = get_drink_instructions_from_api(drink_hash)
+    puts instructions
+    drinks_options(drink_name, drink_hash)
+  when 'See drink catagory'
+    catagory = get_drink_catagory_from_api(drink_hash)
+    puts catagory
+    drinks_options(drink_name, drink_hash)
+  when 'Choose a different drink'
     get_user_drink
   end
 end
@@ -93,24 +95,26 @@ end
 #---------------------Ask Bartender--------------------
 
 def ask_bartender
-  puts ""
-  puts "1| What was my last drink?"
-  puts "2| What's the most popular drink?"
-  puts "3| What's the least popular drink?"
-  puts "4| No more questions??"
-  puts "--------------------------"
-  user_selection = gets.strip.to_i
-    case user_selection
-    when 1
+      puts ""
+        prompt = TTY::Prompt.new
+        response = prompt.select("") do |menu|
+        menu.choice "What was my last drink?"
+        menu.choice "What's the most popular drink?"
+        menu.choice "What's the least popular drink?"
+        menu.choice 'No more questions??'
+      end
+      puts "-----------------------------"
+        case response
+    when "What was my last drink?"
       @@session_user.last_drink
       ask_bartender
-    when 2
+    when "What's the most popular drink?"
       puts Cocktail.most_popular
       ask_bartender
-    when 3
+    when "What's the least popular drink?"
       puts Cocktail.least_popular
       ask_bartender
-    when 4
+    when 'No more questions??'
       main_menu
   end
 end

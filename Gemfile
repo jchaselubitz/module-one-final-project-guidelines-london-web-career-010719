@@ -10,3 +10,4 @@ gem "json"
 gem 'rmagick'
 gem 'asciiart'
 
+gem 'tty-prompt'

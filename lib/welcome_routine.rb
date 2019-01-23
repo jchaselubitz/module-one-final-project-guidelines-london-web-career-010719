@@ -3,7 +3,10 @@
 #---------------------Start new program--------------------
 
 def welcome
-  puts "Welcome to the best Bar in the World!"
+
+  a = AsciiArt.new("https://svgsilh.com/svg/1419481.svg")
+puts a.to_ascii_art
+puts "Welcome to the best Bar in the World!"
 end
 
 # gets user name
