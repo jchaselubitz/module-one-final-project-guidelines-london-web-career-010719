@@ -4,27 +4,24 @@ class Cocktail < ActiveRecord::Base
 
   def self.most_popular
     pophash = group(:name).order('count_id DESC').limit(1).count(:id)
-    return "the #{pophash.keys.first} is the most popular, it has been ordered #{pophash.values.first} times! The kids love it"
+    return "the #{pophash.keys.first} is the most popular, it has been ordered #{pophash.values.first} times! The kids love it".print_slowly
   end
 
   def self.least_popular
     pophash = group(:name).order('count_id ASC').limit(1).count(:id)
     if pophash.values.first > 1
-      return "the #{pophash.keys.first} is the least popular, it has only been ordered #{pophash.values.first} times! TBH it tastes like dirt"
+      return "the #{pophash.keys.first} is the least popular, it has only been ordered #{pophash.values.first} times! TBH it tastes like dirt".print_slowly
     else
-      return "the #{pophash.keys.first} is the least popular, it has only been ordered #{pophash.values.first} time! And that person spit it out!"
+      return "the #{pophash.keys.first} is the least popular, it has only been ordered #{pophash.values.first} time! And that person spit it out!".print_slowly
     end
   end
-  
+
   # def self.most_popular_by_user(id_of_user)
   #   user_pop_hash = group(:name).order('count_id DESC').limit(1).count(:id)
   #   puts "One #{user_pop_hash.keys.first} coming right up"
-  # end 
+  # end
 
   # binding.pry
 
 
 end
-
- 
-

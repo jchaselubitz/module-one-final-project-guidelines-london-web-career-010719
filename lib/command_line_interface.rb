@@ -27,12 +27,12 @@ end
 #---------------------Drinks Selection--------------------
 
 def get_user_drink
-  puts "what drink would you like? (search)"
+  puts "what drink would you like? (search)".print_slowly
   user_drink = gets.strip.downcase
   drink_hash = get_drink_hash_by_name(user_drink)
   drink_name = get_drink_name_from_api(drink_hash)
   puts ""
-  puts "#{drink_name} is an excellent choice! do you want to know anything about this?"
+  puts "#{drink_name} is an excellent choice! do you want to know anything about this?".print_slowly
   drinks_options(drink_name, drink_hash)
 end
 
@@ -136,6 +136,6 @@ end
 #---------------------leave bar--------------------
 
 def leave_bar
-puts "See ya!"
+puts "See ya!".print_slowly
 exit
 end
