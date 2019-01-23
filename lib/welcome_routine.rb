@@ -3,15 +3,15 @@
 #---------------------Start new program--------------------
 
 def welcome
-
   a = AsciiArt.new("https://svgsilh.com/svg/1419481.svg")
 puts a.to_ascii_art
-puts "Welcome to the best Bar in the World!"
+"Welcome to the best bar in the World!".print_slowly
+puts ""
 end
 
 # gets user name
 def get_user_name
-  puts "please enter your full name"
+  puts "Please enter your full name:".print_slowly
   full_name = gets.strip.capitalize
   full_name_split = full_name.split
   first_name = full_name_split.first
@@ -42,5 +42,15 @@ def check_name_in_database(full_name, first_name)
     @@session_user = User.create(name: first_name, full_name: full_name )
     puts "Hello #{@@session_user.name}, You're NEW"
     main_menu
+  end
+end
+
+class String
+  def print_slowly
+    self.each_char do |c|
+      sleep 0.04
+      print c
+    end
+    puts ""
   end
 end
