@@ -37,18 +37,20 @@ end
 
 def drinks_options(drink_name, drink_hash)
 puts ""
-puts "1| See ingredients"
+puts "1| Select this drink"
 puts "2| See how its made"
 puts "3| See drink catagory"
-puts "4| Select this drink"
+puts "4| See ingredients"
 puts "5| Choose a different drink"
 puts "-----------------------------"
 user_selection = gets.strip.to_i
   case user_selection
   when 1
-    ingredients = get_drink_ingredients_from_api(drink_hash)
-    puts ingredients
-    drinks_options(drink_name, drink_hash)
+    create_cocktail(drink_name, drink_hash)
+    puts "Wonderful, here is your #{drink_name}:"
+    #use image gem 
+    #get_drink_image_from_api(drink_hash)
+    main_menu
   when 2
     instructions = get_drink_instructions_from_api(drink_hash)
     puts instructions
@@ -58,9 +60,9 @@ user_selection = gets.strip.to_i
     puts catagory
     drinks_options(drink_name, drink_hash)
   when 4
-    create_cocktail(drink_name, drink_hash)
-    puts "Wonderful, here is your #{drink_name}: #put picture here"
-    main_menu
+    ingredients = get_drink_ingredients_from_api(drink_hash)
+    puts ingredients
+    drinks_options(drink_name, drink_hash)
   when 5
     get_user_drink
   end
@@ -118,4 +120,5 @@ end
 
 def leave_bar
 puts "See ya!"
+exit
 end

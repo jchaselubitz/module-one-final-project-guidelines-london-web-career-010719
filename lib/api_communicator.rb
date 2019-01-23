@@ -25,7 +25,7 @@ end
 
 # return the instructions of the drink from the JSON information
 def get_drink_instructions_from_api(drink_hash)
-  return drink_hash["drinks"][0]["strInstructions"]
+  return drink_hash["drinks"][0]["strDrinkThumb"]
 end
 
 # return the list of ingredients of the drink from the JSON information
@@ -38,9 +38,15 @@ def get_drink_ingredients_from_api(drink_hash)
     if string == ""
       break
     else
-    ingredients_array << drink_hash["drinks"][0]["strIngredient#{i}"]
-    i += 1
+      ingredients_array << drink_hash["drinks"][0]["strIngredient#{i}"]
+      i += 1
+    end
   end
-end
   ingredients_array
 end
+
+  # return the instructions of the drink from the JSON information
+def get_drink_image_from_api(drink_hash)
+  return drink_hash["drinks"][0]["strInstructions"]
+end
+

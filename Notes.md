@@ -3,6 +3,8 @@
     * add error messages for incorrect input
 * Remove debugging 
 √ remove unused tables
+√ leave bar 
+* If search fails
 
 ## Areas where the experience falls off
 
@@ -12,14 +14,6 @@
 
 
 ## Features
-1. Query whether user exists TOGETHER
-    * Interface needs to respond to repeat customer
-    * Enforce first and last name
-    * just use first name
-        
-
-
-
 * ability to see your previous orders TOGETHER
     * datetime
 * ASCII picture of barman on welcome 

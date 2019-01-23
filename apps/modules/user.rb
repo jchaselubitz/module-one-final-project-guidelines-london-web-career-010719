@@ -13,7 +13,4 @@ class User < ActiveRecord::Base
       self.drinks.last.name
     end
 
-    # def regular_order
-    #   reghash = group(:name).order('count_id DESC').limit(1).count(:id)
-    #   return "the #{reghash.keys.first} is the most popular, it has been ordered #{reghash.values.first} times! The kids love it"
 end
