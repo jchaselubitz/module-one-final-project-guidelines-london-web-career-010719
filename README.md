@@ -1,7 +1,7 @@
 
-# Project Title
+# Virtual Bartender
 
-One Paragraph of project description goes here
+A simple CLI app replicating the interaction you would have with a bartender. You can order drinks, ask questions about the drinks and get some cheeky jokes!
 
 ## Getting Started
 
@@ -32,13 +32,19 @@ ActiveRecord::Base.logger = nil
 
 ## Deployment
 
-Add additional notes about how to deploy this on a live system
+In the console, enter:
+
+```
+ruby .bin/run.rb
+```
 
 ## Built With
 
-* [Dropwizard](http://www.dropwizard.io/1.0.2/docs/) - The web framework used
-* [Maven](https://maven.apache.org/) - Dependency Management
-* [ROME](https://rometools.github.io/rome/) - Used to generate RSS Feeds
+* [ActiveRecord](https://github.com/rails/rails/tree/master/activerecord) - The database framework used
+* [asciiart](https://github.com/nodanaonlyzuul/asciiart/) - Used to generate our opening bar image
+* [tty-prompt](https://github.com/piotrmurach/tty-prompt) - Used to enable al prompt tasks
+* [catpix](https://github.com/pazdera/catpix) - Used to generate the cocktail images
+
 
 ## Contributing
 
@@ -46,21 +52,19 @@ Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c6
 
 ## Versioning
 
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags). 
+We use [Github](https://github.com/jchaselubitz/module-one-final-project-guidelines-london-web-career-010719) for versioning. For the versions available, see the [tags on this repository](https://github.com/jchaselubitz/module-one-final-project-guidelines-london-web-career-010719/tags).
 
 ## Authors
 
-* **Billie Thompson** - *Initial work* - [PurpleBooth](https://github.com/PurpleBooth)
-
-See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
+* **Jake Chase-l** - *Initial work* - [jchaselubitz](https://github.com/jchaselubitz)
+* **Matthew Collins** - *Initial work* - [triggerukmc](https://github.com/triggerukmc)
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+This project is licensed under the Learn.co Educational Content License - see the [LICENSE.md](LICENSE.md) file for details
 
 ## Acknowledgments
 
-* Hat tip to anyone whose code was used
-* Inspiration
-* etc
-
+* Sam Barker for sorting out all the Gem and environment issues!
+* Stack overflow
+* Google
