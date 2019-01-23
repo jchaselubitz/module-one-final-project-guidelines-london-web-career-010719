@@ -9,4 +9,4 @@ gem "rest-client"
 gem "json"
 gem 'asciiart'
 gem 'rmagick'
-
+gem 'tty-prompt'
