@@ -27,24 +27,25 @@ end
 #---------------------Drinks Selection--------------------
 
 def get_user_drink
-  puts "what drink would you like? (search)".print_slowly
+  puts "What drink would you like? (search)".print_slowly
   user_drink = gets.strip.downcase
   drink_hash = get_drink_hash_by_name(user_drink)
-  drink_name = get_drink_name_from_api(drink_hash)
-  if !!get_drink_name_from_api(drink_hash)
+  if drink_hash != {"drinks"=>nil}
+    drink_name = get_drink_name_from_api(drink_hash)
 	  puts ""
 	  puts "#{drink_name} is an excellent choice! do you want to know anything about this?".print_slowly
 	  drinks_options(drink_name, drink_hash)
   else
     puts ""
-	  puts "Sorry buddy, there is no such drink."
+    sleep 0.5
+	  puts "Sorry buddy, there is no such drink.".print_slowly
   end
 end
 
 #---------------------Drinks Options--------------------
 
 def drinks_options(drink_name, drink_hash)
-sleep 0.5
+sleep 1
 puts ""
 prompt = TTY::Prompt.new
 response = prompt.select("") do |menu|
@@ -53,6 +54,7 @@ menu.choice 'See ingredients'
 menu.choice 'See how its made'
 menu.choice 'See drink catagory'
 menu.choice 'Choose a different drink'
+menu.choice 'Ask the bartender a question'
 end
 puts "-----------------------------"
   case response
@@ -81,10 +83,12 @@ puts "-----------------------------"
     drinks_options(drink_name, drink_hash)
   when 'See drink catagory'
     catagory = get_drink_catagory_from_api(drink_hash)
-    puts catagory.print_slowly
+    puts catagory.print_slowly  
     drinks_options(drink_name, drink_hash)
   when 'Choose a different drink'
     get_user_drink
+  when "Ask the bartender a question"
+    ask_bartender
   end
 end
 
@@ -126,7 +130,7 @@ def ask_bartender
       puts "-----------------------------"
         case response
     when "What was my last drink?"
-      puts @@session_user.last_drink
+      puts @@session_user.last_drink.print_slowly
       ask_bartender
     when "What's the most popular drink?"
       puts Cocktail.most_popular

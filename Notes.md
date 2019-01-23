@@ -4,11 +4,9 @@
 * Remove debugging 
 √ remove unused tables
 √ leave bar 
-* If search fails
+√ If search fails
 
 ## Areas where the experience falls off
-* If search term doesn't exist
-* last drink if name doesn't exist
 ## Design
 * add space before presenting list
 * Hit enter to continue? 
@@ -18,12 +16,10 @@
 * ability to see your previous orders TOGETHER
     * datetime
 √ ASCII picture of barman on welcome 
-* present drink image with order 
-* bartender joke 
-    * randomize
-* do you like this bar? 
+√ present drink image with order 
+√ bartender joke 
+    √ randomize
 * What can i make with these ingredients 
-* Add loading bar
-* Add options
+
 
 
