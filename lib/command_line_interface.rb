@@ -1,7 +1,3 @@
-# def welcome
-#   puts "Welcome to the best Bar in the World!"
-# end
-
 
 #---------------------Start new program--------------------
 def get_user_name
