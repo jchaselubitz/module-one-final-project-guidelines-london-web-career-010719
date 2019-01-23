@@ -5,6 +5,7 @@
 #---------------------Main Menu--------------------
 
 def main_menu
+  sleep 0.5
   puts ""
   prompt = TTY::Prompt.new
   response = prompt.select("") do |menu|
@@ -38,6 +39,7 @@ end
 #---------------------Drinks Options--------------------
 
 def drinks_options(drink_name, drink_hash)
+sleep 0.5
 puts ""
 prompt = TTY::Prompt.new
 response = prompt.select("") do |menu|
@@ -95,12 +97,14 @@ end
 #---------------------Ask Bartender--------------------
 
 def ask_bartender
+  sleep 0.5
       puts ""
         prompt = TTY::Prompt.new
         response = prompt.select("") do |menu|
         menu.choice "What was my last drink?"
         menu.choice "What's the most popular drink?"
         menu.choice "What's the least popular drink?"
+        menu.choice "Would you like to hear a joke?"
         menu.choice 'No more questions??'
       end
       puts "-----------------------------"
@@ -113,6 +117,15 @@ def ask_bartender
       ask_bartender
     when "What's the least popular drink?"
       puts Cocktail.least_popular
+      ask_bartender
+    when "Would you like to hear a joke?"
+      joke_array = [
+        "An SEO expert walks into a bar, bars, pub, tavern, public house, Irish pub, drinks, beer, alcohol",
+        "Q. How does a computer get drunk? A. It takes screenshots.",
+        "Forget about the past, you can't change it. Forget about the future, you can't predict it.Forget about the present, I didn't get you one.",
+        "What do you call a grilled cheese sandwich that gets right up in your face? Too close for comfort food."
+      ]
+      puts joke_array[rand(0..joke_array.length)].print_slowly
       ask_bartender
     when 'No more questions??'
       main_menu

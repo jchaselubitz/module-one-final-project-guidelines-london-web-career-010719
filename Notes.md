@@ -16,7 +16,7 @@
 ## Features
 * ability to see your previous orders TOGETHER
     * datetime
-* ASCII picture of barman on welcome 
+√ ASCII picture of barman on welcome 
 * present drink image with order 
 * bartender joke 
     * randomize
