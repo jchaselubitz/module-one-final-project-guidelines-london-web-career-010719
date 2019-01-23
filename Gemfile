@@ -9,5 +9,5 @@ gem "rest-client"
 gem "json"
 gem 'rmagick'
 gem 'asciiart'
-
 gem 'tty-prompt'
+gem 'catpix'

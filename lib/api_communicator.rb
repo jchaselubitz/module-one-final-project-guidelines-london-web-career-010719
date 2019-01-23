@@ -45,8 +45,7 @@ def get_drink_ingredients_from_api(drink_hash)
   ingredients_array
 end
 
-  # return the instructions of the drink from the JSON information
+  # return the url image of the drink from the JSON information
 def get_drink_image_from_api(drink_hash)
-  return drink_hash["drinks"][0]["strInstructions"]
+  return drink_hash["drinks"][0]["strDrinkThumb"]
 end
-
