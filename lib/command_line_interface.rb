@@ -71,15 +71,17 @@ puts "-----------------------------"
     main_menu
   when 'See ingredients'
     ingredients = get_drink_ingredients_from_api(drink_hash)
-    puts ingredients
+    ingredients.each do |p|
+      p.print_slowly
+    end
     drinks_options(drink_name, drink_hash)
   when 'See how its made'
     instructions = get_drink_instructions_from_api(drink_hash)
-    puts instructions
+    puts instructions.print_slowly
     drinks_options(drink_name, drink_hash)
   when 'See drink catagory'
     catagory = get_drink_catagory_from_api(drink_hash)
-    puts catagory
+    puts catagory.print_slowly
     drinks_options(drink_name, drink_hash)
   when 'Choose a different drink'
     get_user_drink

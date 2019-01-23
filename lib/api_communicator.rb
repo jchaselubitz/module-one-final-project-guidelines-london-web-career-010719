@@ -25,7 +25,7 @@ end
 
 # return the instructions of the drink from the JSON information
 def get_drink_instructions_from_api(drink_hash)
-  return drink_hash["drinks"][0]["strDrinkThumb"]
+  return drink_hash["drinks"][0]["strInstructions"]
 end
 
 # return the list of ingredients of the drink from the JSON information
