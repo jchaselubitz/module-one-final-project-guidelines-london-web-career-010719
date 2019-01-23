@@ -7,7 +7,7 @@ gem "pry"
 gem "require_all"
 gem "rest-client"
 gem "json"
-gem 'rmagick'
+# gem 'rmagick'
 gem 'asciiart'
 gem 'tty-prompt'
 gem 'catpix'
