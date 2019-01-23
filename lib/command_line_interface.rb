@@ -53,7 +53,16 @@ puts "-----------------------------"
   case response
   when 'Select this drink'
     create_cocktail(drink_name, drink_hash)
-    puts "Wonderful, here is your #{drink_name}: #put picture here"
+    puts "Wonderful, here is your #{drink_name}:"
+    puts ""
+    Catpix::print_image get_drink_image_from_api(drink_hash),
+    :limit_x => 0.4,
+    :limit_y => 0,
+    :center_x => false,
+    :center_y => true,
+    :bg => "black",
+    :bg_fill => true,
+    :resolution => "high"
     main_menu
   when 'See ingredients'
     ingredients = get_drink_ingredients_from_api(drink_hash)
