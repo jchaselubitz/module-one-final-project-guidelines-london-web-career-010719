@@ -110,7 +110,7 @@ def ask_bartender
       puts "-----------------------------"
         case response
     when "What was my last drink?"
-      @@session_user.last_drink
+      puts @@session_user.last_drink
       ask_bartender
     when "What's the most popular drink?"
       puts Cocktail.most_popular
@@ -125,7 +125,8 @@ def ask_bartender
         "Forget about the past, you can't change it. Forget about the future, you can't predict it.Forget about the present, I didn't get you one.",
         "What do you call a grilled cheese sandwich that gets right up in your face? Too close for comfort food."
       ]
-      puts joke_array[rand(0..joke_array.length)].print_slowly
+      joke_output = joke_array[rand(0..joke_array.length)]
+      puts joke_output
       ask_bartender
     when 'No more questions??'
       main_menu

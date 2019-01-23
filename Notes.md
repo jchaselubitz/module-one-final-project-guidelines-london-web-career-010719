@@ -7,7 +7,8 @@
 * If search fails
 
 ## Areas where the experience falls off
-
+* If search term doesn't exist
+* last drink if name doesn't exist
 ## Design
 * add space before presenting list
 * Hit enter to continue? 

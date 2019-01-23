@@ -10,7 +10,12 @@ class User < ActiveRecord::Base
     end
 
     def last_drink
-      self.drinks.last.name
+      if !!self.drinks.last
+        self.drinks.last.name
+      else
+        text = "Don't be silly. You've never been here before."
+        puts text.print_slowly
+      end
     end
 
 end
