@@ -31,9 +31,14 @@ def get_user_drink
   user_drink = gets.strip.downcase
   drink_hash = get_drink_hash_by_name(user_drink)
   drink_name = get_drink_name_from_api(drink_hash)
-  puts ""
-  puts "#{drink_name} is an excellent choice! do you want to know anything about this?".print_slowly
-  drinks_options(drink_name, drink_hash)
+  if !!get_drink_name_from_api(drink_hash)
+	  puts ""
+	  puts "#{drink_name} is an excellent choice! do you want to know anything about this?".print_slowly
+	  drinks_options(drink_name, drink_hash)
+  else 
+    puts ""
+	  puts "Sorry buddy, there is no such drink."
+  end
 end
 
 #---------------------Drinks Options--------------------
@@ -121,12 +126,11 @@ def ask_bartender
     when "Would you like to hear a joke?"
       joke_array = [
         "An SEO expert walks into a bar, bars, pub, tavern, public house, Irish pub, drinks, beer, alcohol",
-        "Q. How does a computer get drunk? A. It takes screenshots.",
+        "How does a computer get drunk?...      It takes screenshots.",
         "Forget about the past, you can't change it. Forget about the future, you can't predict it.Forget about the present, I didn't get you one.",
         "What do you call a grilled cheese sandwich that gets right up in your face? Too close for comfort food."
       ]
-      joke_output = joke_array[rand(0..joke_array.length)]
-      puts joke_output
+      puts joke_array[rand(0..joke_array.length)].prints_slowly
       ask_bartender
     when 'No more questions??'
       main_menu
