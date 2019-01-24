@@ -31,6 +31,6 @@ class User < ActiveRecord::Base
       puts "#{outcome}, you have used it a total of #{qty.second} times!".print_slowly
 
 
-    end
+    end 
 
 end
