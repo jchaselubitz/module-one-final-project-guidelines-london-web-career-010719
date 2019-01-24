@@ -62,7 +62,7 @@ class User < ActiveRecord::Base
           get_user_drink(session_user)
       end
 
-    end
+    end 
 
     #puts "#{outcome.keys}, you have used it a total of #{qty.second} times!".print_slowly
     #end
