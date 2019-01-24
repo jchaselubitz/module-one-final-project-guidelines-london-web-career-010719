@@ -16,6 +16,13 @@ class Cocktail < ActiveRecord::Base
     end
   end
 
+  def self.by_user(user)
+    scope :individual_user, -> { where("user_id = ?", user) }
+    most_frequently_ordered = individual_user.group(:name).order('count_id DESC').limit(1).count(:id)
+    "#{most_frequently_ordered.keys}"
+    most_frequently_ordered.keys
+  end
+
   # def self.most_popular_by_user(id_of_user)
   #   user_pop_hash = group(:name).order('count_id DESC').limit(1).count(:id)
   #   puts "One #{user_pop_hash.keys.first} coming right up"

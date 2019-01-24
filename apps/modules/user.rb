@@ -8,6 +8,10 @@ class User < ActiveRecord::Base
         self.id == drink.user_id
       end
     end
+    
+    def regular
+      Cocktail.by_user(self.id).first
+    end
 
     def last_drink
       if !!self.drinks.last
