@@ -31,7 +31,7 @@ class User < ActiveRecord::Base
     end
 
     def recommendation(session_user)
-      a = get_drinks_by_ingredient
+      a = get_drinks_by_ingredient.shuffle[0..5]
       puts "Here are some options:"
       prompt = TTY::Prompt.new
       response = prompt.select("") do |menu|
