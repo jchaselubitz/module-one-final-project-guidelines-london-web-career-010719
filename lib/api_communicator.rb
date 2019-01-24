@@ -10,17 +10,16 @@ end
 
 # return the name of the drink from the JSON information
 def get_drink_name_from_api(drink_hash)
-  binding.pry
   return drink_hash["drinks"][0]["strDrink"]
 end
 
 def get_three_drink_names_from_api(drink_hash)
   drink_array = []
   drink_array << drink_hash["drinks"][0]["strDrink"]
-  if !!drink_hash["drinks"][1]["strDrink"]
+  if drink_hash["drinks"].length > 1
     drink_array << drink_hash["drinks"][1]["strDrink"]
   end
-  if !!drink_hash["drinks"][2]["strDrink"]
+  if drink_hash["drinks"].length > 2
     drink_array << drink_hash["drinks"][2]["strDrink"]
   end
   drink_array
