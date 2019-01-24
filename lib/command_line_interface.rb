@@ -4,21 +4,40 @@
 
 #---------------------Main Menu--------------------
 
+def main_menu_new_customer
+  sleep 0.5
+  puts ""
+  prompt = TTY::Prompt.new
+  response = prompt.select("") do |menu|
+    menu.choice "Search for Drink"
+    menu.choice 'Ask Bartender'
+    menu.choice 'Leave Bar'
+  end
+  puts "-----------------------------"
+  case response
+  when 'Search for Drink'
+    get_user_drink
+  when 'Ask Bartender'
+    ask_bartender
+  when 'Leave Bar'
+    leave_bar
+  end
+end
+
 def main_menu
   sleep 0.5
   puts ""
   prompt = TTY::Prompt.new
   response = prompt.select("") do |menu|
-  menu.choice 'Have my regular'
-  menu.choice 'Search for Drink'
-  menu.choice 'Ask Bartender'
-  menu.choice 'Leave Bar'
-end
-puts "-----------------------------"
+    menu.choice 'Have my regular'
+    menu.choice 'Search for Drink'
+    menu.choice 'Ask Bartender'
+    menu.choice 'Leave Bar'
+  end
+  puts "-----------------------------"
   case response
   when 'Have my regular'
     have_regular
-    #needs failure case
   when 'Search for Drink'
     get_user_drink
   when 'Ask Bartender'
@@ -35,7 +54,6 @@ def have_regular
   drink_hash = get_drink_hash_by_name(drink_name)
   create_cocktail(drink_name, drink_hash)
 end
-
 
 def get_user_drink
   puts "What drink would you like? (search)".print_slowly

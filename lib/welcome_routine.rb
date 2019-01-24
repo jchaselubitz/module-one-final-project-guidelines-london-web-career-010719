@@ -25,7 +25,7 @@ def check_if_full_name(full_name, full_name_split, first_name)
   if full_name_split.length > 1
     check_name_in_database(full_name, first_name)
   else
-    puts "Give me your full name jackass!".print_slowly
+    puts "Give me your full name, jackass!".print_slowly
     get_user_name
   end
 end
@@ -41,8 +41,8 @@ def check_name_in_database(full_name, first_name)
   else
     #if false, creates a new user and assigns it to @@session_user
     @@session_user = User.create(name: first_name, full_name: full_name )
-    puts "Hello #{@@session_user.name}, You're NEW".print_slowly
-    main_menu
+    puts "Hello #{@@session_user.name}, it's wonderful to meet you".print_slowly
+    main_menu_new_customer
   end
 end
 
