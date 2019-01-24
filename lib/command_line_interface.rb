@@ -189,7 +189,8 @@ def ask_bartender(session_user)
           "An SEO expert walks into a bar, bars, pub, tavern, public house, Irish pub, drinks, beer, alcohol",
           "How does a computer get drunk?...      It takes screenshots.",
           "Forget about the past, you can't change it. Forget about the future, you can't predict it.Forget about the present, I didn't get you one.",
-          "What do you call a grilled cheese sandwich that gets right up in your face? Too close for comfort food."
+          "What do you call a grilled cheese sandwich that gets right up in your face? Too close for comfort food.",
+          "Jake and Matt should build a browser to handle all these open tabs."
         ]
         output = joke_array[rand(0..joke_array.length)]
         output.print_slowly
