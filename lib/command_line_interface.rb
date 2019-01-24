@@ -163,6 +163,7 @@ def ask_bartender(session_user)
       menu.choice "What was my last drink?"
       menu.choice "What's the most popular drink?"
       menu.choice "What's the least popular drink?"
+      menu.choice "What's my most common ingredient?"
       menu.choice "Would you like to hear a joke?"
       menu.choice 'No more questions??'
     end
@@ -179,6 +180,9 @@ def ask_bartender(session_user)
         drink_questionnaire(session_user, drink_name)
       when "What's the least popular drink?"
         puts Cocktail.least_popular
+        ask_bartender(session_user)
+      when "What's my most common ingredient?"
+        session_user.my_most_common_ingredient
         ask_bartender(session_user)
       when "Would you like to hear a joke?"
         joke_array = [

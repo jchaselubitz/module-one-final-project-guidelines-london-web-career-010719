@@ -15,10 +15,12 @@ require_relative "../apps/modules/ingredient.rb"
 
 
 def run
+
+
 welcome
 get_user_name
 
-main_menu
+# main_menu
 
 end
 
