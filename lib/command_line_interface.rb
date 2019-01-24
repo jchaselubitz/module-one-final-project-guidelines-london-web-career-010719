@@ -147,7 +147,7 @@ end
 
 def create_ingredients(id, ingredients)
   ingredients.each do |ingredient|
-    Ingredient.create(name: ingredient, drink_id: id)
+    Ingredient.create(name: ingredient, cocktail_id: id)
   end
 end
 
@@ -161,6 +161,7 @@ def ask_bartender(session_user)
     prompt = TTY::Prompt.new
     response = prompt.select("") do |menu|
       menu.choice "What was my last drink?"
+      menu.choice "Give me a drink recommendation based on ingredients I like."
       menu.choice "What's the most popular drink?"
       menu.choice "What's the least popular drink?"
       menu.choice "What's my most common ingredient?"
@@ -173,6 +174,9 @@ def ask_bartender(session_user)
         puts session_user.last_drink.print_slowly
         drink_name = session_user.last_drink
         drink_questionnaire(session_user, drink_name)
+      when "Give me a drink recommendation based on ingredients I like."
+        session_user.recommendation(session_user)
+        drink_questionnaire(session_user, drink_name)
       when "What's the most popular drink?"
         pophash = Cocktail.most_popular
         puts "the #{pophash.keys.first} is the most popular, it has been ordered #{pophash.values.first} times! The kids love it".print_slowly
@@ -182,7 +186,8 @@ def ask_bartender(session_user)
         puts Cocktail.least_popular
         ask_bartender(session_user)
       when "What's my most common ingredient?"
-        session_user.my_most_common_ingredient
+        outcome = session_user.most_common_ingredient_name
+        puts "#{outcome[0]}, you have used it a total of #{outcome[1]} times!".print_slowly
         ask_bartender(session_user)
       when "Would you like to hear a joke?"
         joke_array = [

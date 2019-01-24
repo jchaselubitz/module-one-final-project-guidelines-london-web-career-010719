@@ -49,3 +49,12 @@ end
 def get_drink_image_from_api(drink_hash)
   return drink_hash["drinks"][0]["strDrinkThumb"]
 end
+
+def get_drinks_by_ingredient
+  response_string = RestClient.get("http://www.thecocktaildb.com/api/json/v1/1/filter.php?i=#{most_common_ingredient_name[0]}")
+  drink_hash = JSON.parse(response_string.body)
+  all_drinks_from_ingredient = drink_hash["drinks"].map do |drink|
+    drink["strDrink"]
+  end
+  all_drinks_from_ingredient.shuffle[0..5]
+end

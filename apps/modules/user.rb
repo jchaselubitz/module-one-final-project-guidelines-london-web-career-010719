@@ -22,15 +22,53 @@ class User < ActiveRecord::Base
       end
     end
 
-    def my_most_common_ingredient
+    def my_ingredients
+      self.ingredients.all.group(:name).order('count_id DESC').count(:id)
+    end
 
-          total_list =  self.ingredients.all.map{|x| x.name}
-          freq = total_list.inject(Hash.new(0)) { |h,v| h[v] += 1; h }
-          outcome = total_list.max_by { |v| freq[v] }
-          qty = freq.max_by { |v,h| freq[h] }
-      puts "#{outcome}, you have used it a total of #{qty.second} times!".print_slowly
+    def most_common_ingredient_name
+      my_ingredients.first
+    end
 
+    def recommendation(session_user)
+      a = get_drinks_by_ingredient
+      puts "Here are some options:"
+      prompt = TTY::Prompt.new
+      response = prompt.select("") do |menu|
+        menu.choice "#{a[0]}",1
+        menu.choice "#{a[1]}",2
+        menu.choice "#{a[2]}",3
+        menu.choice "#{a[3]}",4
+        menu.choice "I'd like more suggestions",5
+        menu.choice "I am not interested in these. Let me request a new drink.",6
+      end
+      puts "-----------------------------"
+      case response
+        when 1
+          drink_hash = get_drink_hash_by_name("#{a[0]}")
+          create_cocktail("#{a[0]}", drink_hash,session_user) 
+        when 2
+          drink_hash = get_drink_hash_by_name("#{a[1]}")
+          create_cocktail("#{a[1]}", drink_hash,session_user) 
+        when 3
+          drink_hash = get_drink_hash_by_name("#{a[2]}")
+          create_cocktail("#{a[2]}", drink_hash,session_user) 
+        when 4
+          drink_hash = get_drink_hash_by_name("#{a[3]}")
+          create_cocktail("#{a[3]}", drink_hash,session_user) 
+        when 5
+          recommendation(session_user)
+        when 6
+          get_user_drink(session_user)
+      end
 
     end
 
+    #puts "#{outcome.keys}, you have used it a total of #{qty.second} times!".print_slowly
+    #end
+
+    # def my_recommendation
+    #   my_ingredients
 end
+
+
