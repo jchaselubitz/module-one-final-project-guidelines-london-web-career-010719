@@ -55,6 +55,4 @@ def get_drinks_by_ingredient
   drink_hash = JSON.parse(response_string.body)
   all_drinks_from_ingredient = drink_hash["drinks"].map do |drink|
     drink["strDrink"]
-  end
-  all_drinks_from_ingredient.shuffle[0..5]
 end
