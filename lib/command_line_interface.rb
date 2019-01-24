@@ -81,35 +81,38 @@ sleep 1
 puts ""
 prompt = TTY::Prompt.new
 response = prompt.select("") do |menu|
-  menu.choice "No, just give me the #{drink_name}"
-  menu.choice 'See ingredients'
-  menu.choice 'See how its made'
-  menu.choice 'See drink catagory'
-  menu.choice 'Choose a different drink'
-  menu.choice 'Ask the bartender a question'
+  menu.choice "No, just give me the #{drink_name}",1
+  menu.choice 'See ingredients',2
+  menu.choice 'See how its made',3
+  menu.choice 'See drink catagory',4
+  menu.choice 'Choose a different drink',5
+  menu.choice 'Ask the bartender a question',6
   end
   puts "-----------------------------"
   case response
-  when "No, just give me the #{drink_name}"
+  when 1
     create_cocktail(drink_name, drink_hash , session_user)
-  when 'See ingredients'
+  when 2
     ingredients = get_drink_ingredients_from_api(drink_hash)
     ingredients.each do |p|
       p.print_slowly
     end
     drinks_options(drink_name, drink_hash, session_user)
-  when 'See how its made'
+  when 3
     instructions = get_drink_instructions_from_api(drink_hash)
     puts instructions.print_slowly
     drinks_options(drink_name, drink_hash, session_user)
-  when 'See drink catagory'
+  when 4
     catagory = get_drink_catagory_from_api(drink_hash)
-    binding.pry
+    if catagory != nil
     puts catagory.print_slowly
+  else
+    puts "I'm not really sure... must be a hipster drink".print_slowly
+  end
     drinks_options(drink_name, drink_hash, session_user)
-  when 'Choose a different drink'
+  when 5
     get_user_drink(session_user)
-  when "Ask the bartender a question"
+  when 6
     ask_bartender(session_user)
   end
 end
@@ -152,11 +155,12 @@ def create_ingredients(id, ingredients)
 end
 
 
-#---------------------Ask Bartender--------------------
+#--------------------------------Ask Bartender---------------------------------------------
 
 def ask_bartender(session_user)
   sleep 0.5
   puts ""
+  #--------when user has visited before--------
   if Is_in_database.getter
     prompt = TTY::Prompt.new
     response = prompt.select("") do |menu|
@@ -203,6 +207,7 @@ def ask_bartender(session_user)
       when 'No more questions??'
         main_menu(session_user)
     end
+#--------------when new user-------------------
   else
     prompt = TTY::Prompt.new
     response = prompt.select("") do |menu|
@@ -214,8 +219,10 @@ def ask_bartender(session_user)
     puts "-----------------------------"
     case response
       when "What's the most popular drink?"
-        puts Cocktail.most_popular
-        ask_bartender(session_user)
+        pophash = Cocktail.most_popular
+        puts "the #{pophash.keys.first} is the most popular, it has been ordered #{pophash.values.first} times! The kids love it".print_slowly
+        drink_name = "#{pophash.keys.first}"
+        drink_questionnaire(session_user, drink_name)
       when "What's the least popular drink?"
         puts Cocktail.least_popular
         ask_bartender(session_user)

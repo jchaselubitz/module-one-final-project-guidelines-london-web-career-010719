@@ -56,3 +56,4 @@ def get_drinks_by_ingredient
   all_drinks_from_ingredient = drink_hash["drinks"].map do |drink|
     drink["strDrink"]
 end
+end
