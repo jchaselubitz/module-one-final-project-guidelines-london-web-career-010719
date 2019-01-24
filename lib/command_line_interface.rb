@@ -63,14 +63,32 @@ def get_user_drink(session_user)
   user_drink = gets.strip.downcase
   drink_hash = get_drink_hash_by_name(user_drink)
   if drink_hash != {"drinks"=>nil}
-    drink_name = get_drink_name_from_api(drink_hash)
-	  puts ""
+    drink_options = get_three_drink_names_from_api(drink_hash) #get_drink_name_from_api(drink_hash)
+    #-----chooser----
+    prompt = TTY::Prompt.new
+    response = prompt.select("") do |menu|
+      menu.choice "#{drink_options[0]}"
+      menu.choice "#{drink_options[1]}"
+      menu.choice "#{drink_options[2]}"
+    end
+    puts "-----------------------------"
+    case response
+    when "#{drink_options[0]}"
+     drink_name = "#{drink_options[0]}"
+    when "#{drink_options[1]}"
+      drink_name = "#{drink_options[1]}"
+    when "#{drink_options[2]}"
+      drink_name = "#{drink_options[2]}"
+    end
+    #-----chooser----
+    puts ""
 	  puts "#{drink_name} is an excellent choice! do you want to know anything about this?".print_slowly
 	  drinks_options(drink_name, drink_hash, session_user)
   else
     puts ""
     sleep 0.5
-	  puts "Sorry buddy, there is no such drink.".print_slowly
+    puts "Sorry buddy, there is no such drink.".print_slowly
+    get_user_drink(session_user)
   end
 end
 
