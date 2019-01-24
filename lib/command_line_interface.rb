@@ -220,7 +220,7 @@ def ask_bartender(session_user)
           "What do you call a grilled cheese sandwich that gets right up in your face? Too close for comfort food.",
           "Jake and Matt should build a browser to handle all these open tabs."
         ]
-        output = joke_array[rand(0..joke_array.length)]
+        output = joke_array[rand(0..joke_array.length-1)]
         output.print_slowly
           ask_bartender(session_user)
       when "I don't have any more questions."
