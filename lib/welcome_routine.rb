@@ -40,40 +40,12 @@ def check_name_in_database(full_name, first_name)
     session_user = User.find_by(full_name: full_name)
     Is_in_database.setter(true)
     puts "Welcome back #{session_user.name}, how can I help you?".print_slowly
-    main_menu
+    main_menu(session_user)
   else
     #if false, creates a new user and assigns it to session_user
     session_user = User.create(name: first_name, full_name: full_name )
     Is_in_database.setter(false)
     puts "Hello #{session_user.name}, it's wonderful to meet you".print_slowly
-    main_menu
-  end
-end
-
-#---------------------Supporting Methods--------------------
-
-class Is_in_database
-
-  #Is_in_database.setter(value)
-  #Is_in_database.getter
-
-  def self.setter(value)
-    @value = value
-  end
-
-  def self.getter
-    @value 
-  end
-
-end
-
-
-class String
-  def print_slowly
-    self.each_char do |c|
-      sleep 0.04
-      print c
-    end
-    puts ""
+    main_menu(session_user)
   end
 end

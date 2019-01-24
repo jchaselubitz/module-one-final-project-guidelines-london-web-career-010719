@@ -53,6 +53,11 @@ def have_regular(session_user)
   create_cocktail(drink_name, drink_hash, session_user)
 end
 
+def have_offered_drink(session_user, drink_name)
+  drink_hash = get_drink_hash_by_name(drink_name)
+  create_cocktail(drink_name, drink_hash, session_user)
+end
+
 def get_user_drink(session_user)
   puts "What drink would you like? (search)".print_slowly
   user_drink = gets.strip.downcase
@@ -164,11 +169,14 @@ def ask_bartender(session_user)
     puts "-----------------------------"
     case response
       when "What was my last drink?"
-        puts @@session_user.last_drink.print_slowly
-        ask_bartender(session_user)
+        puts session_user.last_drink.print_slowly
+        drink_name = session_user.last_drink
+        drink_questionnaire(session_user, drink_name)
       when "What's the most popular drink?"
-        puts Cocktail.most_popular
-        ask_bartender(session_user)
+        pophash = Cocktail.most_popular
+        puts "the #{pophash.keys.first} is the most popular, it has been ordered #{pophash.values.first} times! The kids love it".print_slowly
+        drink_name = "#{pophash.keys.first}"
+        drink_questionnaire(session_user, drink_name)
       when "What's the least popular drink?"
         puts Cocktail.least_popular
         ask_bartender(session_user)

@@ -3,8 +3,7 @@ class Cocktail < ActiveRecord::Base
     has_many :ingredients
 
   def self.most_popular
-    pophash = group(:name).order('count_id DESC').limit(1).count(:id)
-    return "the #{pophash.keys.first} is the most popular, it has been ordered #{pophash.values.first} times! The kids love it".print_slowly
+    group(:name).order('count_id DESC').limit(1).count(:id)
   end
 
   def self.least_popular
