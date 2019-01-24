@@ -3,30 +3,47 @@
 # end
 
 #---------------------Main Menu--------------------
-
 def main_menu(session_user)
-  sleep 0.5
-  puts ""
-  prompt = TTY::Prompt.new
-  response = prompt.select("") do |menu|
-  menu.choice 'Have my regular'
-  menu.choice 'Search for Drink'
-  menu.choice 'Ask Bartender'
-  menu.choice 'Leave Bar'
-end
-puts "-----------------------------"
-  case response
-  when 'Have my regular'
-    have_regular(session_user)
-    #needs failure case
-  when 'Search for Drink'
-    get_user_drink(session_user)
-  when 'Ask Bartender'
-    ask_bartender(session_user)
-  when 'Leave Bar'
-    leave_bar
+  if Is_in_database.getter
+    sleep 0.5
+    puts ""
+    prompt = TTY::Prompt.new
+    response = prompt.select("") do |menu|
+      menu.choice 'Have my regular'
+      menu.choice 'Search for Drink'
+      menu.choice 'Ask Bartender'
+      menu.choice 'Leave Bar'
+    end
+    puts "-----------------------------"
+    case response
+    when 'Have my regular'
+      have_regular(session_user)
+    when 'Search for Drink'
+      get_user_drink(session_user)
+    when 'Ask Bartender'
+      ask_bartender(session_user)
+    when 'Leave Bar'
+      leave_bar
+    end
+  else
+    prompt = TTY::Prompt.new
+    response = prompt.select("") do |menu|
+      menu.choice "Search for Drink"
+      menu.choice 'Ask Bartender'
+      menu.choice 'Leave Bar'
+    end
+    puts "-----------------------------"
+    case response
+    when 'Search for Drink'
+      get_user_drink(session_user)
+    when 'Ask Bartender'
+      ask_bartender(session_user)
+    when 'Leave Bar'
+      leave_bar
+    end
   end
 end
+
 
 #---------------------Drinks Selection--------------------
 
@@ -35,7 +52,6 @@ def have_regular(session_user)
   drink_hash = get_drink_hash_by_name(drink_name)
   create_cocktail(drink_name, drink_hash, session_user)
 end
-
 
 def get_user_drink(session_user)
   puts "What drink would you like? (search)".print_slowly
@@ -60,14 +76,14 @@ sleep 1
 puts ""
 prompt = TTY::Prompt.new
 response = prompt.select("") do |menu|
-menu.choice "No, just give me the #{drink_name}"
-menu.choice 'See ingredients'
-menu.choice 'See how its made'
-menu.choice 'See drink catagory'
-menu.choice 'Choose a different drink'
-menu.choice 'Ask the bartender a question'
-end
-puts "-----------------------------"
+  menu.choice "No, just give me the #{drink_name}"
+  menu.choice 'See ingredients'
+  menu.choice 'See how its made'
+  menu.choice 'See drink catagory'
+  menu.choice 'Choose a different drink'
+  menu.choice 'Ask the bartender a question'
+  end
+  puts "-----------------------------"
   case response
   when "No, just give me the #{drink_name}"
     create_cocktail(drink_name, drink_hash , session_user)
@@ -107,20 +123,21 @@ def create_cocktail(drink_name, drink_hash,session_user)
     user_drink.id,
     get_drink_ingredients_from_api(drink_hash)
     )
-    puts "Wonderful, here is your #{drink_name}:"
-    puts ""
-    Catpix::print_image get_drink_image_from_api(drink_hash),
-    :limit_x => 0.4,
-    :limit_y => 0,
-    :center_x => false,
-    :center_y => true,
-    :bg => "black",
-    :bg_fill => true,
-    :resolution => "high"
-    puts ""
-    puts "Enjoy!".print_slowly
-    puts "==================================="
-    main_menu(session_user)
+  puts "Wonderful, here is your #{drink_name}:"
+  puts ""
+  Catpix::print_image get_drink_image_from_api(drink_hash),
+  :limit_x => 0.4,
+  :limit_y => 0,
+  :center_x => false,
+  :center_y => true,
+  :bg => "black",
+  :bg_fill => true,
+  :resolution => "high"
+  puts ""
+  puts "Enjoy!"
+  puts "==================================="
+  Is_in_database.setter(true)
+  main_menu(session_user)
 end
 
 def create_ingredients(id, ingredients)
@@ -134,38 +151,69 @@ end
 
 def ask_bartender(session_user)
   sleep 0.5
-      puts ""
-        prompt = TTY::Prompt.new
-        response = prompt.select("") do |menu|
-        menu.choice "What was my last drink?"
-        menu.choice "What's the most popular drink?"
-        menu.choice "What's the least popular drink?"
-        menu.choice "Would you like to hear a joke?"
-        menu.choice 'No more questions??'
-      end
-      puts "-----------------------------"
-        case response
-    when "What was my last drink?"
-      puts session_user.last_drink.print_slowly
-      ask_bartender(session_user)
-    when "What's the most popular drink?"
-      puts Cocktail.most_popular
-      ask_bartender(session_user)
-    when "What's the least popular drink?"
-      puts Cocktail.least_popular
-      ask_bartender(session_user)
-    when "Would you like to hear a joke?"
-      joke_array = [
-        "An SEO expert walks into a bar, bars, pub, tavern, public house, Irish pub, drinks, beer, alcohol",
-        "How does a computer get drunk?...      It takes screenshots.",
-        "Forget about the past, you can't change it. Forget about the future, you can't predict it.Forget about the present, I didn't get you one.",
-        "What do you call a grilled cheese sandwich that gets right up in your face? Too close for comfort food."
-      ]
-    output = joke_array[rand(0..joke_array.length)]
-    output.print_slowly
-      ask_bartender(session_user)
-    when 'No more questions??'
-      main_menu(session_user)
+  puts ""
+  if Is_in_database.getter
+    prompt = TTY::Prompt.new
+    response = prompt.select("") do |menu|
+      menu.choice "What was my last drink?"
+      menu.choice "What's the most popular drink?"
+      menu.choice "What's the least popular drink?"
+      menu.choice "Would you like to hear a joke?"
+      menu.choice 'No more questions??'
+    end
+    puts "-----------------------------"
+    case response
+      when "What was my last drink?"
+        puts @@session_user.last_drink.print_slowly
+        ask_bartender(session_user)
+      when "What's the most popular drink?"
+        puts Cocktail.most_popular
+        ask_bartender(session_user)
+      when "What's the least popular drink?"
+        puts Cocktail.least_popular
+        ask_bartender(session_user)
+      when "Would you like to hear a joke?"
+        joke_array = [
+          "An SEO expert walks into a bar, bars, pub, tavern, public house, Irish pub, drinks, beer, alcohol",
+          "How does a computer get drunk?...      It takes screenshots.",
+          "Forget about the past, you can't change it. Forget about the future, you can't predict it.Forget about the present, I didn't get you one.",
+          "What do you call a grilled cheese sandwich that gets right up in your face? Too close for comfort food."
+        ]
+        output = joke_array[rand(0..joke_array.length)]
+        output.print_slowly
+          ask_bartender(session_user)
+      when 'No more questions??'
+        main_menu(session_user)
+    end
+  else
+    prompt = TTY::Prompt.new
+    response = prompt.select("") do |menu|
+      menu.choice "What's the most popular drink?"
+      menu.choice "What's the least popular drink?"
+      menu.choice "Would you like to hear a joke?"
+      menu.choice 'No more questions??'
+    end
+    puts "-----------------------------"
+    case response
+      when "What's the most popular drink?"
+        puts Cocktail.most_popular
+        ask_bartender(session_user)
+      when "What's the least popular drink?"
+        puts Cocktail.least_popular
+        ask_bartender(session_user)
+      when "Would you like to hear a joke?"
+        joke_array = [
+          "An SEO expert walks into a bar, bars, pub, tavern, public house, Irish pub, drinks, beer, alcohol",
+          "How does a computer get drunk?...      It takes screenshots.",
+          "Forget about the past, you can't change it. Forget about the future, you can't predict it.Forget about the present, I didn't get you one.",
+          "What do you call a grilled cheese sandwich that gets right up in your face? Too close for comfort food."
+        ]
+        output = joke_array[rand(0..joke_array.length)]
+        output.print_slowly
+          ask_bartender(session_user)
+      when 'No more questions??'
+        main_menu(session_user)
+    end
   end
 end
 
