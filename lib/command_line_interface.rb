@@ -187,8 +187,9 @@ def ask_bartender(session_user)
       menu.choice "What's the most popular drink?"
       menu.choice "What's the least popular drink?"
       menu.choice "What's my most common ingredient?"
-      menu.choice "Would you like to hear a joke?"
-      menu.choice 'No more questions??'
+      menu.choice "Tell me a joke!"
+      #menu.choice "Do you have any food?"
+      menu.choice "I don't have any more questions."
     end
     puts "-----------------------------"
     case response
@@ -211,7 +212,7 @@ def ask_bartender(session_user)
         outcome = session_user.most_common_ingredient_name
         puts "#{outcome[0]}, you have used it a total of #{outcome[1]} times!".print_slowly
         ask_bartender(session_user)
-      when "Would you like to hear a joke?"
+      when "Tell me a joke!"
         joke_array = [
           "An SEO expert walks into a bar, bars, pub, tavern, public house, Irish pub, drinks, beer, alcohol",
           "How does a computer get drunk?...      It takes screenshots.",
@@ -222,8 +223,11 @@ def ask_bartender(session_user)
         output = joke_array[rand(0..joke_array.length)]
         output.print_slowly
           ask_bartender(session_user)
-      when 'No more questions??'
+      when "I don't have any more questions."
         main_menu(session_user)
+      # when "Do you have any food?"
+      #   puts "Sure."
+      #   sends to song/yannick app
     end
 #--------------when new user-------------------
   else
