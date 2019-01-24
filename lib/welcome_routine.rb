@@ -30,21 +30,43 @@ def check_if_full_name(full_name, full_name_split, first_name)
   end
 end
 
+# need to do something with welcome string
+
 
 def check_name_in_database(full_name, first_name)
   # check if name exists in database
   if !!User.find_by(full_name: full_name)
     # if true, assigns @@session_user to that instance in the database
     @@session_user = User.find_by(full_name: full_name)
+    Is_in_database.setter(true)
     puts "Welcome back #{@@session_user.name}, how can I help you?".print_slowly
     main_menu
   else
     #if false, creates a new user and assigns it to @@session_user
     @@session_user = User.create(name: first_name, full_name: full_name )
+    Is_in_database.setter(false)
     puts "Hello #{@@session_user.name}, it's wonderful to meet you".print_slowly
-    main_menu_new_customer
+    main_menu
   end
 end
+
+#---------------------Supporting Methods--------------------
+
+class Is_in_database
+
+  #Is_in_database.setter(value)
+  #Is_in_database.getter
+
+  def self.setter(value)
+    @value = value
+  end
+
+  def self.getter
+    @value 
+  end
+
+end
+
 
 class String
   def print_slowly
