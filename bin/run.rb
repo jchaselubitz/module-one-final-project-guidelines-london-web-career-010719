@@ -13,7 +13,7 @@ require_relative "../apps/modules/cocktail.rb"
 require_relative "../apps/modules/ingredient.rb"
 
 
-@@session_user={}
+# @@session_user={}
 
 def run
 welcome

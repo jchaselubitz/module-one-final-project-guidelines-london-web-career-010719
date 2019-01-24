@@ -35,14 +35,14 @@ def check_name_in_database(full_name, first_name)
   # check if name exists in database
   if !!User.find_by(full_name: full_name)
     # if true, assigns @@session_user to that instance in the database
-    @@session_user = User.find_by(full_name: full_name)
-    puts "Welcome back #{@@session_user.name}, how can I help you?".print_slowly
-    main_menu
+    session_user = User.find_by(full_name: full_name)
+    puts "Welcome back #{session_user.name}, how can I help you?".print_slowly
+    main_menu(session_user)
   else
     #if false, creates a new user and assigns it to @@session_user
-    @@session_user = User.create(name: first_name, full_name: full_name )
-    puts "Hello #{@@session_user.name}, You're NEW".print_slowly
-    main_menu
+    session_user = User.create(name: first_name, full_name: full_name )
+    puts "Hello #{session_user.name}, You're NEW".print_slowly
+    main_menu(session_user)
   end
 end
 

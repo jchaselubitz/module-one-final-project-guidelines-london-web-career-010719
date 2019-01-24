@@ -4,7 +4,7 @@
 
 #---------------------Main Menu--------------------
 
-def main_menu
+def main_menu(session_user)
   sleep 0.5
   puts ""
   prompt = TTY::Prompt.new
@@ -17,12 +17,12 @@ end
 puts "-----------------------------"
   case response
   when 'Have my regular'
-    have_regular
+    have_regular(session_user)
     #needs failure case
   when 'Search for Drink'
-    get_user_drink
+    get_user_drink(session_user)
   when 'Ask Bartender'
-    ask_bartender
+    ask_bartender(session_user)
   when 'Leave Bar'
     leave_bar
   end
@@ -30,14 +30,14 @@ end
 
 #---------------------Drinks Selection--------------------
 
-def have_regular
-  drink_name = @@session_user.regular
+def have_regular(session_user)
+  drink_name = session_user.regular
   drink_hash = get_drink_hash_by_name(drink_name)
-  create_cocktail(drink_name, drink_hash)
+  create_cocktail(drink_name, drink_hash, session_user)
 end
 
 
-def get_user_drink
+def get_user_drink(session_user)
   puts "What drink would you like? (search)".print_slowly
   user_drink = gets.strip.downcase
   drink_hash = get_drink_hash_by_name(user_drink)
@@ -45,7 +45,7 @@ def get_user_drink
     drink_name = get_drink_name_from_api(drink_hash)
 	  puts ""
 	  puts "#{drink_name} is an excellent choice! do you want to know anything about this?".print_slowly
-	  drinks_options(drink_name, drink_hash)
+	  drinks_options(drink_name, drink_hash, session_user)
   else
     puts ""
     sleep 0.5
@@ -55,7 +55,7 @@ end
 
 #---------------------Drinks Options--------------------
 
-def drinks_options(drink_name, drink_hash)
+def drinks_options(drink_name, drink_hash, session_user)
 sleep 1
 puts ""
 prompt = TTY::Prompt.new
@@ -70,33 +70,35 @@ end
 puts "-----------------------------"
   case response
   when "No, just give me the #{drink_name}"
-    create_cocktail(drink_name, drink_hash)
+    create_cocktail(drink_name, drink_hash , session_user)
   when 'See ingredients'
     ingredients = get_drink_ingredients_from_api(drink_hash)
     ingredients.each do |p|
       p.print_slowly
     end
-    drinks_options(drink_name, drink_hash)
+    drinks_options(drink_name, drink_hash, session_user)
   when 'See how its made'
     instructions = get_drink_instructions_from_api(drink_hash)
     puts instructions.print_slowly
-    drinks_options(drink_name, drink_hash)
+    drinks_options(drink_name, drink_hash, session_user)
   when 'See drink catagory'
     catagory = get_drink_catagory_from_api(drink_hash)
-    puts catagory.print_slowly  
-    drinks_options(drink_name, drink_hash)
+    binding.pry
+    puts catagory.print_slowly
+    drinks_options(drink_name, drink_hash, session_user)
   when 'Choose a different drink'
-    get_user_drink
+    get_user_drink(session_user)
   when "Ask the bartender a question"
-    ask_bartender
+    ask_bartender(session_user)
   end
 end
 
+#------create drink, save and print to console--------------------
 
-def create_cocktail(drink_name, drink_hash)
+def create_cocktail(drink_name, drink_hash,session_user)
   user_drink = Cocktail.create(
     name: drink_name,
-    user_id: @@session_user.id,
+    user_id: session_user.id,
     idDrink: get_drink_ID_from_api(drink_hash),
     strIBA: get_drink_catagory_from_api(drink_hash),
     strInstructions: get_drink_instructions_from_api(drink_hash)
@@ -116,9 +118,9 @@ def create_cocktail(drink_name, drink_hash)
     :bg_fill => true,
     :resolution => "high"
     puts ""
-    puts "Enjoy!"
+    puts "Enjoy!".print_slowly
     puts "==================================="
-    main_menu
+    main_menu(session_user)
 end
 
 def create_ingredients(id, ingredients)
@@ -130,7 +132,7 @@ end
 
 #---------------------Ask Bartender--------------------
 
-def ask_bartender
+def ask_bartender(session_user)
   sleep 0.5
       puts ""
         prompt = TTY::Prompt.new
@@ -144,14 +146,14 @@ def ask_bartender
       puts "-----------------------------"
         case response
     when "What was my last drink?"
-      puts @@session_user.last_drink.print_slowly
-      ask_bartender
+      puts session_user.last_drink.print_slowly
+      ask_bartender(session_user)
     when "What's the most popular drink?"
       puts Cocktail.most_popular
-      ask_bartender
+      ask_bartender(session_user)
     when "What's the least popular drink?"
       puts Cocktail.least_popular
-      ask_bartender
+      ask_bartender(session_user)
     when "Would you like to hear a joke?"
       joke_array = [
         "An SEO expert walks into a bar, bars, pub, tavern, public house, Irish pub, drinks, beer, alcohol",
@@ -161,9 +163,9 @@ def ask_bartender
       ]
     output = joke_array[rand(0..joke_array.length)]
     output.print_slowly
-      ask_bartender
+      ask_bartender(session_user)
     when 'No more questions??'
-      main_menu
+      main_menu(session_user)
   end
 end
 
