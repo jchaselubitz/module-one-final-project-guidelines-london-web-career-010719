@@ -16,7 +16,6 @@ def get_user_name
   full_name = gets.strip.capitalize
   full_name_split = full_name.split
   first_name = full_name_split.first
-  # binding.pry
   check_if_full_name(full_name, full_name_split, first_name)
 end
 

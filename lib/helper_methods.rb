@@ -2,15 +2,12 @@ class Is_in_database
 
     #Is_in_database.setter(value)
     #Is_in_database.getter
-  
     def self.setter(value)
       @value = value
     end
-  
     def self.getter
       @value 
     end
-  
   end
   
 def drink_questionnaire(session_user,drink_name)
@@ -28,7 +25,7 @@ def drink_questionnaire(session_user,drink_name)
         ask_bartender(session_user)
     end
 end
-  
+
   
   class String
     def print_slowly

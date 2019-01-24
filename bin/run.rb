@@ -12,12 +12,12 @@ require_relative '../config/environment'
 require_relative "../apps/modules/user.rb"
 require_relative "../apps/modules/cocktail.rb"
 require_relative "../apps/modules/ingredient.rb"
+require_relative "../playground.rb"
 
 
 def run
 welcome
 get_user_name
-
 main_menu
 
 end

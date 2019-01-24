@@ -22,12 +22,4 @@ class Cocktail < ActiveRecord::Base
     most_frequently_ordered.keys
   end
 
-  # def self.most_popular_by_user(id_of_user)
-  #   user_pop_hash = group(:name).order('count_id DESC').limit(1).count(:id)
-  #   puts "One #{user_pop_hash.keys.first} coming right up"
-  # end
-
-  # binding.pry
-
-
 end
