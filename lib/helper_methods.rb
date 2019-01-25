@@ -43,7 +43,6 @@ end
     joke_array = [
       "An SEO expert walks into a bar, bars, pub, tavern, public house, Irish pub, drinks, beer, alcohol",
       "How does a computer get drunk?...      It takes screenshots.",
-      "What do you call a grilled cheese sandwich that gets right up in your face? Too close for comfort food.",
       "I'm not that kind of barman sucker ╭∩╮( ͡° ͜ʖ ͡°)╭∩╮",
       "99 bugs in the code. Take one down, pass it around, 483 little bugs in the code.",
       "What's an object-oriented way to become wealthy? Inheritance."
