@@ -6,8 +6,12 @@ def welcome
   a = AsciiArt.new("https://svgsilh.com/svg/1419481.svg")
 puts a.to_ascii_art
 puts ""
-"Welcome to the best bar in the World!".print_slowly
+# "Welcome to the best bar in the World!".print_slowly
 puts ""
+
+b = Artii::Base.new :font => 'slant'
+puts b.asciify('Welcome to the best bar in the World!')
+
 end
 
 # gets user name
