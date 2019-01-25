@@ -214,18 +214,8 @@ def ask_bartender(session_user)
         puts "#{outcome[0]}, you have used it a total of #{outcome[1]} times!".print_slowly
         ask_bartender(session_user)
       when "Tell me a joke!"
-        joke_array = [
-          "An SEO expert walks into a bar, bars, pub, tavern, public house, Irish pub, drinks, beer, alcohol",
-          "How does a computer get drunk?...      It takes screenshots.",
-          "Forget about the past, you can't change it. Forget about the future, you can't predict it. Forget about the present, I didn't get you one.",
-          "What do you call a grilled cheese sandwich that gets right up in your face? Too close for comfort food.",
-          "Jake and Matt should build a browser to handle all these open tabs."
-        ]
-
-        output = joke_array[rand(0..joke_array.length-1)]
-        binding.pry
-        output.print_slowly
-          ask_bartender(session_user)
+        joke_teller
+        ask_bartender(session_user)
       when "I don't have any more questions."
         main_menu(session_user)
       # when "Do you have any food?"
@@ -252,15 +242,8 @@ def ask_bartender(session_user)
         puts Cocktail.least_popular
         ask_bartender(session_user)
       when "Tell me a joke!"
-        joke_array = [
-          "An SEO expert walks into a bar, bars, pub, tavern, public house, Irish pub, drinks, beer, alcohol",
-          "How does a computer get drunk?...      It takes screenshots.",
-          "Forget about the past, you can't change it. Forget about the future, you can't predict it. Forget about the present, I didn't get you one.",
-          "What do you call a grilled cheese sandwich that gets right up in your face? Too close for comfort food."
-        ]
-        output = joke_array[rand(0..joke_array.length-1)]
-        output.print_slowly
-          ask_bartender(session_user)
+        joke_teller
+        ask_bartender(session_user)
       when 'No more questions??'
         main_menu(session_user)
     end
