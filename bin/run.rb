@@ -4,6 +4,7 @@ require 'asciiart'
 require 'rmagick'
 require 'tty-prompt'
 require 'catpix'
+require 'artii'
 require_relative "../lib/command_line_interface.rb"
 require_relative "../lib/api_communicator.rb"
 require_relative "../lib/welcome_routine.rb"
