@@ -125,7 +125,7 @@ response = prompt.select("") do |menu|
     if catagory != nil
     puts catagory.print_slowly
   else
-    puts "I'm not really sure... must be a hipster drink".print_slowly
+    puts "I'm not really sure... must be some hipster drink".print_slowly
   end
     drinks_options(drink_name, drink_hash, session_user)
   when 5
@@ -160,7 +160,7 @@ def create_cocktail(drink_name, drink_hash,session_user)
   :bg_fill => true,
   :resolution => "high"
   puts ""
-  puts "Enjoy!"
+  puts "Enjoy!".print_slowly
   puts "==================================="
   Is_in_database.setter(true)
   main_menu(session_user)
@@ -238,7 +238,7 @@ def ask_bartender(session_user)
     case response
       when "What's the most popular drink?"
         pophash = Cocktail.most_popular
-        puts "the #{pophash.keys.first} is the most popular, it has been ordered #{pophash.values.first} times! The kids love it".print_slowly
+        puts "The #{pophash.keys.first} is the most popular, it has been ordered #{pophash.values.first} times! The kids love it".print_slowly
         drink_name = "#{pophash.keys.first}"
         drink_questionnaire(session_user, drink_name)
       when "What's the least popular drink?"
