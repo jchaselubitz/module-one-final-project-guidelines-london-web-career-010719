@@ -1,4 +1,4 @@
-# https://svgsilh.com/svg/1419481.svg
+
 
 #---------------------Start new program--------------------
 
