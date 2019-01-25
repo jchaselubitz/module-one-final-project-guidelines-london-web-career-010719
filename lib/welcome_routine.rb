@@ -4,10 +4,8 @@
 
 
 def welcome
-#   a = AsciiArt.new("https://svgsilh.com/svg/1419481.svg")
-# puts a.to_ascii_art
 
-a = AsciiArt.new("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSzeOfLeqJc2WEmHNV-WOIAgCytFsJfEMC3L2s-AtAxXvYXN1kkfQ")
+a = AsciiArt.new("https://svgsilh.com/svg/1419481.svg")
 puts a.to_ascii_art
 
 puts ""
@@ -15,7 +13,7 @@ puts ""
 puts ""
 
 b = Artii::Base.new :font => 'doom'
-puts Rainbow(b.asciify('Welcome to the best bar in the World!'))
+puts Rainbow(b.asciify('Welcome to Foo Bar !'))
 end
 
 # gets user name
@@ -46,12 +44,14 @@ def check_name_in_database(full_name, first_name)
     # if true, assigns session_user to that instance in the database
     session_user = User.find_by(full_name: full_name)
     Is_in_database.setter(true)
+    puts ""
     puts "Welcome back #{session_user.name}, how can I help you?".print_slowly
     main_menu(session_user)
   else
     #if false, creates a new user and assigns it to session_user
     session_user = User.create(name: first_name, full_name: full_name )
     Is_in_database.setter(false)
+    puts ""
     puts "Hello #{session_user.name}, it's wonderful to meet you".print_slowly
     main_menu(session_user)
   end

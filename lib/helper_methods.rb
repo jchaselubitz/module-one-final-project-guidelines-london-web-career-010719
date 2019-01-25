@@ -6,10 +6,10 @@ class Is_in_database
       @value = value
     end
     def self.getter
-      @value 
+      @value
     end
   end
-  
+
 def drink_questionnaire(session_user,drink_name)
     puts ""
     puts "Would you like the #{drink_name}?"
@@ -26,7 +26,7 @@ def drink_questionnaire(session_user,drink_name)
     end
 end
 
-  
+
   class String
     def print_slowly
       self.each_char do |c|
@@ -43,7 +43,8 @@ end
       "An SEO expert walks into a bar, bars, pub, tavern, public house, Irish pub, drinks, beer, alcohol",
       "How does a computer get drunk?...      It takes screenshots.",
       "Forget about the past, you can't change it. Forget about the future, you can't predict it. Forget about the present, I didn't get you one.",
-      "What do you call a grilled cheese sandwich that gets right up in your face? Too close for comfort food."
+      "What do you call a grilled cheese sandwich that gets right up in your face? Too close for comfort food.",
+      "I'm not that kind of barman sucker ╭∩╮( ͡° ͜ʖ ͡°)╭∩╮"
     ]
     output = joke_array[rand(0..joke_array.length-1)]
     output.print_slowly
