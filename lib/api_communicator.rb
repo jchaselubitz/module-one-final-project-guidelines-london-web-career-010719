@@ -1,6 +1,3 @@
-# require 'rest-client'
-# require 'json'
-# require 'pry'
 
 # search for the drink name using API, return JSON info for that drink
 def get_drink_hash_by_name(user_drink)

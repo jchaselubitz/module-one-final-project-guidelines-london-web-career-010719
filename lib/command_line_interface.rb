@@ -1,6 +1,3 @@
-# def welcome
-#   puts "Welcome to the best Bar in the World!"
-# end
 
 #---------------------Main Menu--------------------
 def main_menu(session_user)
@@ -68,8 +65,12 @@ def get_user_drink(session_user)
     prompt = TTY::Prompt.new
     response = prompt.select("") do |menu|
       menu.choice "#{drink_options[0]}"
-      menu.choice "#{drink_options[1]}"
+      if drink_options.length > 1
+        menu.choice "#{drink_options[1]}"
+      end
+      if drink_options.length > 2
       menu.choice "#{drink_options[2]}"
+      end
     end
     puts "-----------------------------"
     case response
@@ -235,7 +236,7 @@ def ask_bartender(session_user)
     response = prompt.select("") do |menu|
       menu.choice "What's the most popular drink?"
       menu.choice "What's the least popular drink?"
-      menu.choice "Would you like to hear a joke?"
+      menu.choice "Tell me a joke!"
       menu.choice 'No more questions??'
     end
     puts "-----------------------------"
@@ -248,11 +249,11 @@ def ask_bartender(session_user)
       when "What's the least popular drink?"
         puts Cocktail.least_popular
         ask_bartender(session_user)
-      when "Would you like to hear a joke?"
+      when "Tell me a joke!"
         joke_array = [
           "An SEO expert walks into a bar, bars, pub, tavern, public house, Irish pub, drinks, beer, alcohol",
           "How does a computer get drunk?...      It takes screenshots.",
-          "Forget about the past, you can't change it. Forget about the future, you can't predict it.Forget about the present, I didn't get you one.",
+          "Forget about the past, you can't change it. Forget about the future, you can't predict it. Forget about the present, I didn't get you one.",
           "What do you call a grilled cheese sandwich that gets right up in your face? Too close for comfort food."
         ]
         output = joke_array[rand(0..joke_array.length)]
@@ -269,5 +270,7 @@ end
 
 def leave_bar
 puts "See ya!".print_slowly
+a = AsciiArt.new("https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/Middle_finger_BNC.jpg/220px-Middle_finger_BNC.jpg")
+puts a.to_ascii_art(width: 50)
 exit
 end
