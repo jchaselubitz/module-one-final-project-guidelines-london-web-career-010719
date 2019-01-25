@@ -56,7 +56,7 @@ We use [Github](https://github.com/jchaselubitz/module-one-final-project-guideli
 
 ## Authors
 
-* **Jake Chase-l** - *Initial work* - [jchaselubitz](https://github.com/jchaselubitz)
+* **Jake Chase-Lubitz** - *Initial work* - [jchaselubitz](https://github.com/jchaselubitz)
 * **Matthew Collins** - *Initial work* - [triggerukmc](https://github.com/triggerukmc)
 
 ## License

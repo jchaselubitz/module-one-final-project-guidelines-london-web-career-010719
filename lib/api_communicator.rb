@@ -1,6 +1,10 @@
 
 # search for the drink name using API, return JSON info for that drink
 def get_drink_hash_by_name(user_drink)
+  to_trim = ["ó","é","é"]
+  to_trim.each do |char|
+    user_drink = user_drink.tr(char, "")
+  end
   response_string = RestClient.get("https://www.thecocktaildb.com/api/json/v1/1/search.php?s=#{user_drink}")
   JSON.parse(response_string.body)
 end
