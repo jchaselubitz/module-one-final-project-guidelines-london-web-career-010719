@@ -4,8 +4,12 @@
 
 
 def welcome
-  a = AsciiArt.new("https://svgsilh.com/svg/1419481.svg")
+#   a = AsciiArt.new("https://svgsilh.com/svg/1419481.svg")
+# puts a.to_ascii_art
+
+a = AsciiArt.new("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSzeOfLeqJc2WEmHNV-WOIAgCytFsJfEMC3L2s-AtAxXvYXN1kkfQ")
 puts a.to_ascii_art
+
 puts ""
 # "Welcome to the best bar in the World!".print_slowly
 puts ""
