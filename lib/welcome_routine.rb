@@ -9,7 +9,6 @@ a = AsciiArt.new("https://svgsilh.com/svg/1419481.svg")
 puts a.to_ascii_art
 
 puts ""
-# "Welcome to the best bar in the World!".print_slowly
 puts ""
 
 b = Artii::Base.new :font => 'doom'
@@ -30,6 +29,7 @@ def check_if_full_name(full_name, full_name_split, first_name)
   if full_name_split.length > 1
     check_name_in_database(full_name, first_name)
   else
+    puts ""
     puts "Give me your full name, jackass!".print_slowly
     get_user_name
   end

@@ -257,5 +257,7 @@ def leave_bar
 puts "See ya!".print_slowly
 a = AsciiArt.new("https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/Middle_finger_BNC.jpg/220px-Middle_finger_BNC.jpg")
 puts a.to_ascii_art(width: 50)
+sleep(4)
+system('clear')
 exit
 end
